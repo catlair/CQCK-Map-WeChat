@@ -2,7 +2,6 @@
 // 获取应用实例
 var app = getApp();
 Page({
-
   /**
    * 页面的初始数据
    */
@@ -11,87 +10,78 @@ Page({
     buildlData: app.globalData.map,
     showData: null,
     cursor: 0,
-    imgCDN: app.imgCDN
+    imgCDN: app.imgCDN,
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
-  
-  },
+  onLoad: function (options) {},
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function () {
-  
-  },
+  onReady: function () {},
 
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () {
-  
-  },
+  onShow: function () {},
 
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function () {
-  
-  },
+  onHide: function () {},
 
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload: function () {
-  
-  },
+  onUnload: function () {},
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function () {
-  
-  },
+  onPullDownRefresh: function () {},
 
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function () {
-  
-  },
+  onReachBottom: function () {},
 
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () {
-  
-  },
+  onShareAppMessage: function () {},
 
   /**
    * sou搜索输入
    */
   bindSearchInput: function (e) {
-    let showData = new Array();
+    let showData = [];
     let searchdata = this.data.buildlData;
     if (e.detail.cursor >= this.data.cursor) {
       //输入文字
-      console.log('输入文字')
-      let inputData = e.detail.value.replace(/(^\s*)|(\s*$)/g, "")
+      console.log('输入文字');
+      let inputData = e.detail.value.replace(/(^\s*)|(\s*$)/g, '');
       if (inputData) {
-        let z = 0, x = 100;
+        let z = 0,
+          x = 100;
         for (var b in searchdata) {
           for (var i in searchdata[b].data) {
-            if (searchdata[b].data[i].name.indexOf(inputData) != -1 || (searchdata[b].data[i].floor && searchdata[b].data[i].floor.indexOf(inputData) != -1)) {
+            if (
+              searchdata[b].data[i].name.indexOf(inputData) != -1 ||
+              (searchdata[b].data[i].floor &&
+                searchdata[b].data[i].floor.indexOf(inputData) != -1)
+            ) {
               let build = searchdata[b].data[i];
               build.tid = b;
               build.bid = i;
               z = z + 1;
               build.index = z;
               showData.push(build);
-            } else if (searchdata[b].data[i].description.indexOf(inputData) != -1) {
+            } else if (
+              searchdata[b].data[i].description.indexOf(inputData) != -1
+            ) {
               let build = searchdata[b].data[i];
               build.tid = b;
               build.bid = i;
@@ -108,16 +98,18 @@ Page({
               var temp = showData[j];
               showData[j] = showData[j + 1];
               showData[j + 1] = temp;
-              console.log('交换' + showData[j].index + ':' + showData[j + 1].index)
+              console.log(
+                '交换' + showData[j].index + ':' + showData[j + 1].index
+              );
             }
           }
         }
-        console.log(showData)
+        console.log(showData);
         this.setData({ showData: showData });
       }
     } else {
       //删除文字
-      console.log('删除文字')
+      console.log('删除文字');
       this.setData({ showData: null });
     }
     this.data.cursor = e.detail.cursor;
@@ -128,5 +120,5 @@ Page({
    */
   reset: function () {
     this.setData({ keyword: null });
-  }
-})
+  },
+});
