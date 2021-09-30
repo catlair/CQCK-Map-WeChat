@@ -13,7 +13,7 @@
   <view class="copyright">
     <!-- <navigator url="web-views/web-views?url"> -->
     <navigator>
-      <text>©吉林大学资产管理与后勤处</text>
+      <text>©城科资产管理与后勤处</text>
     </navigator>
     <!-- <navigator url="web-views/web-views?url={{mapCopyright.url}}"> -->
     <navigator>
